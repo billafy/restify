@@ -1,0 +1,73 @@
+.request {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    border-left: 1px solid #1560BD;
+    padding: 30px 15px 30px 15px;
+    min-height: 375px;
+    max-height: auto;
+    .url-method {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .url {
+        width: 85%;
+        background-color: azure;
+        height: 35px;
+        padding: 0px 5px 0px 5px;
+        border-bottom: 1px solid #1560BD;
+    }
+    select {
+        height: 35px;
+        width: 15%;
+        background: azure;
+        color: #1560BD;
+        padding: 0px 5px 0px 5px;
+        border: 1px solid #1560BD;
+    }
+    .textfields {
+        p {
+            text-transform: capitalize;
+            margin-bottom: 10px;
+        }
+        input {
+            height: 35px;
+            background: azure;
+            border-bottom: 1px solid #1560BD;
+            margin-right: 10px;
+        }
+        button {
+            background: white;
+            color: #1560BD;
+            font-size: 1.7rem;
+            transition: 0.3s all ease
+        }
+        button:hover {
+            color: black;
+        }
+    }
+    .send {
+        background: #1560BD;
+        height: 35px;
+        width: 100px;
+        color: azure;
+        font-size: 1.3rem;
+        margin: 15px auto 15px auto;
+        transition: 0.3s all ease;
+    }
+    .send:hover {
+        transform: scale(1.03);
+    }
+}
+@media (min-width: 0px) and (max-width: 868px) {
+    .request {
+        grid-column: 1/3;
+        min-height: 150px;
+        .url {
+            width: 75%;
+        }
+        select {
+            width: 25%;
+        }
+    }
+}

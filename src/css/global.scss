@@ -1,0 +1,27 @@
+* {
+    font-family: 'Segoe UI';
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0px;
+}
+button, input, textarea, select {
+    outline: none;
+    border-radius: 0px;
+    border: 0px;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content: space-around;
+    align-items: center;
+    grid-row-gap: 30px;
+}
