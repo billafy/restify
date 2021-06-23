@@ -23,6 +23,7 @@ const Restify = () => {
         arr.map(a => {
             if(a[0] && a[1])
                 obj[a[0]] = a[1];
+                return a;
         })
         return obj;
     }

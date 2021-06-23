@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useContext} from 'react';
 import {methods} from '../utils/data';
 import TextFields from './TextFields';
 
