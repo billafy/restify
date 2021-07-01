@@ -3,7 +3,6 @@ import React from 'react';
 import '../css/loading.scss';
 
 const Loading = () => {
-	console.log('loading');
 	return (
 		<div className='loading'>
 			<div className='line one'></div>

@@ -75,8 +75,6 @@ const Restify = () => {
 
         const data = await response.json();
 
-        console.log(data);
-
         setResponseData({
             statusCode: data.statusCode,
             body: JSON.stringify(data.body),
