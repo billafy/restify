@@ -17,3 +17,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/images/vector
+
+/images/cover.png
+/images/default - Copy.png
+/images/info.txt
+/images/profile.png
