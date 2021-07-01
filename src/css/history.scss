@@ -24,12 +24,14 @@
     ul {
         display: flex;
         flex-direction: column-reverse;
+        overflow-y: scroll;
         height: 250px;
-        overflow-y: auto;
+        width: 30vw;
         li {
             border: 1px solid #1560BD;
             padding: 5px;
             margin-bottom: 5px;
+            overflow: hidden;
             h3, p {
                 font-weight: normal;
                 margin: 0px;
@@ -37,6 +39,7 @@
             }
             p {
                 font-size: 0.8rem;
+                word-wrap: break-word;
             }
             button {
                 background: transparent;

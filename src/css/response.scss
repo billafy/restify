@@ -33,4 +33,14 @@
         padding: 10px;
         line-height: 2;
     }
+    p {
+        word-wrap: break-word;
+    }
+    pre {
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+    }
 }

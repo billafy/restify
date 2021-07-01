@@ -8,6 +8,8 @@ import TopBar from './TopBar';
 
 import '../css/global.scss' ;
 
+const API = process.env.REACT_APP_API_URL;
+
 export const RestContext = React.createContext();
 
 const Restify = () => {
@@ -17,6 +19,7 @@ const Restify = () => {
     const [url, setUrl] = useState('');
     const [rawHeaders, setRawHeaders] = useState([['', '']]);
     const [rawBody, setRawBody] = useState([['', '']]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const objectify = (arr) => {
         let obj = {};
@@ -55,52 +58,32 @@ const Restify = () => {
         if(!url)
             return;
 
+        setIsLoading(true);
+
         addToHistory();
 
         const headers = objectify(rawHeaders);
         const body = objectify(rawBody);
 
-        let response;
-        try {
-            if(method === 'GET') {
-                response = await fetch(url);
-            }
-            else if(method === 'HEAD') {
-                response = await fetch(url);
-                const resHeaders = {};
-                for(const header of response.headers.entries())
-                resHeaders[header[0]] = header[1];
-                console.log(resHeaders);
-                setResponseData({body: JSON.stringify(resHeaders)});
-                return;
-            }
-            else {
-                response = await fetch(url, {
-                    method,
-                    headers,
-                    body: JSON.stringify(body),
-                });
-            }
-        }
-        catch(err) {
-            setResponseData({body: JSON.stringify({error: String(err)})});
-            return;
-        }
-
-        let data;
-        try {
-            data = await response.json();
-            console.log(data);
-        }
-        catch(err) {
-            setResponseData({body: JSON.stringify({error: String(err)})});
-            return;
-        }
-        setResponseData({
-            statusCode: response.status,
-            statusText: response.statusText,
-            body: JSON.stringify(data),
+        const response = await fetch(API, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({method, url, headers, body}),
         });
+
+        const data = await response.json();
+
+        console.log(data);
+
+        setResponseData({
+            statusCode: data.statusCode,
+            body: JSON.stringify(data.body),
+            type: data.type,
+        });
+
+        setIsLoading(false);
     }
 
     useEffect(() => {
@@ -116,7 +99,8 @@ const Restify = () => {
                 rawHeaders, setRawHeaders,
                 rawBody, setRawBody,
                 responseData,
-                history, clearHistory, selectHistory
+                history, clearHistory, selectHistory,
+                isLoading
             }}
         >
             <div className='container'>

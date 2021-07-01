@@ -36,6 +36,13 @@
             border-bottom: 1px solid #1560BD;
             margin-right: 10px;
         }
+        div {
+           display: flex;
+           align-items: center;
+           button {
+            font-size: 1.1rem;
+           }
+        }
         button {
             background: white;
             color: #1560BD;

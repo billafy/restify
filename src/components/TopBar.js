@@ -1,12 +1,11 @@
 import React from 'react';
-
 import '../css/topbar.scss';
+import logo from '../images/logo.png';
 
 const TopBar = () => {
     return (
         <div className='topbar'>
-            <h1>RESTify</h1>
-            <p>A REST API Client</p>
+            <img src={logo} alt='Logo'/>
         </div>
     )
 };

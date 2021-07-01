@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-
 import _ from 'lodash';
+import {MdClose} from 'react-icons/md';
 
 const TextFields = ({text, pairs, setPairs}) => {
     const [count, setCount] = useState(1);
@@ -18,6 +18,12 @@ const TextFields = ({text, pairs, setPairs}) => {
         const newPairs = pairs.slice(0, pairs.length - 1);
         setPairs(newPairs);
         setCount(count => count - 1);
+    };
+
+    const removeSelected = (index) => {
+        const newPairs = pairs.filter((pair, i) => i !== index);
+        setPairs(newPairs);
+        setCount(count => count - 1); 
     };
 
     const changeInput = (input, i, j) => {
@@ -41,6 +47,11 @@ const TextFields = ({text, pairs, setPairs}) => {
                         <div key={text + String(index)}>
                             <input type='text' placeholder={text === 'headers' ? 'Header' : 'Key'} value={pairs[index][0]} onChange={(event) => changeInput(event.target.value, index, 0)}/>
                             <input type='text' placeholder='Value' value={pairs[index][1]} onChange={(event) => changeInput(event.target.value, index, 1)}/>
+                            {
+                                index > 0 
+                                &&
+                                <button onClick={() => removeSelected(index)}><MdClose/></button>
+                            }
                         </div>
                     );
                 })
