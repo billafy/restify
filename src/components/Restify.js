@@ -54,6 +54,43 @@ const Restify = () => {
         setRawBody(history[i].rawBody);
     }
 
+    const sendLocalRequest = async (headers, body) => {
+        try {
+            let response, data;
+            if(method === 'GET' || method === 'HEAD') {
+                response = await fetch(url, {
+                    method,
+                    headers
+                })
+                if(method === 'GET')
+                    data = await response.json();
+                else if(method === 'HEAD') {
+                    data = {};
+                    for(let header of response.headers.entries())
+                        data[header[0]] = header[1];
+                }
+            }
+            else {
+                response = await fetch(url, {
+                    method,
+                    headers,
+                    body: JSON.stringify(body),
+                })
+                data = await response.json();
+            }
+            setResponseData({
+                statusCode: method === 'HEAD' ? 200 : response.status,
+                body: JSON.stringify({body: data}),
+                type: 'json',
+            });
+            setIsLoading(false);
+            return true;
+        }
+        catch (err) {
+            return false;
+        }   
+    }
+
     const sendRequest = async () => {
         if(!url)
             return;
@@ -64,6 +101,12 @@ const Restify = () => {
 
         const headers = objectify(rawHeaders);
         const body = objectify(rawBody);
+
+        if(url.includes('localhost') || url.includes('127.0.0.1') || url.includes('LOCALHOST')) {
+            const fetched = await sendLocalRequest(headers, body);
+            if(fetched)
+                return;
+        }
 
         const response = await fetch(API, {
             method: 'POST',
@@ -77,7 +120,7 @@ const Restify = () => {
 
         setResponseData({
             statusCode: data.statusCode,
-            body: JSON.stringify(data.body),
+            body: JSON.stringify({body: data.body}),
             type: data.type,
         });
 

@@ -22,6 +22,7 @@ const Request = ({sendRequest}) => {
                 <TextFields text={'body'} pairs={rawBody} setPairs={setRawBody}/>
             }
             <button className='send' onClick={sendRequest}>Send</button>
+            <p style={{fontSize: '0.75rem'}}>Enable CORS for Local API testing</p>
         </div>
     )
 }
