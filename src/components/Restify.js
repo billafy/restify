@@ -32,12 +32,20 @@ const Restify = () => {
     }
 
     const addToHistory = async () => {
-        setHistory(history => {
-            return [...history, {url, method, rawHeaders, rawBody}];
-        });
+        if(history.length && history[history.length - 1].url === url) {
+            setHistory(history => {
+                return [...history.slice(0, history.length - 1), {url, method, rawHeaders, rawBody}];
+            })
+        }
+        else {
+            setHistory(history => {
+                return [...history, {url, method, rawHeaders, rawBody}];
+            });
+        }
         let savedHistory = JSON.parse(localStorage.getItem('history'));
         if(!savedHistory)
             savedHistory = [];
+        savedHistory = savedHistory.slice(0, savedHistory.length - 1)
         savedHistory.push({url, method, rawHeaders, rawBody});
         localStorage.setItem('history', JSON.stringify(savedHistory));
     }

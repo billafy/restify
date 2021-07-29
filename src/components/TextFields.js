@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import _ from 'lodash';
+import {FaTrash} from 'react-icons/fa';
 import {MdClose} from 'react-icons/md';
 
 const TextFields = ({text, pairs, setPairs}) => {
@@ -37,6 +38,10 @@ const TextFields = ({text, pairs, setPairs}) => {
         });
         setPairs(newPairs);
     };
+
+    useEffect(() => {
+        setCount(pairs.length || 1)
+    }, [pairs])
     
     return (
         <div className={`textfields ${text}`}>
@@ -45,8 +50,18 @@ const TextFields = ({text, pairs, setPairs}) => {
                 _.times(count, (index) => {
                     return (
                         <div key={text + String(index)}>
-                            <input type='text' placeholder={text === 'headers' ? 'Header' : 'Key'} value={pairs[index][0]} onChange={(event) => changeInput(event.target.value, index, 0)}/>
-                            <input type='text' placeholder='Value' value={pairs[index][1]} onChange={(event) => changeInput(event.target.value, index, 1)}/>
+                            <input
+                                type='text' 
+                                placeholder={text === 'headers' ? 'Header' : 'Key'} 
+                                value={pairs[index] ? pairs[index][0] : ''} 
+                                onChange={(event) => changeInput(event.target.value, index, 0)} 
+                            />
+                            <input
+                                type='text' 
+                                placeholder='Value' 
+                                value={pairs[index] ? pairs[index][1] : ''} 
+                                onChange={(event) => changeInput(event.target.value, index, 1)}
+                            />
                             {
                                 index > 0 
                                 &&
@@ -58,6 +73,7 @@ const TextFields = ({text, pairs, setPairs}) => {
             }
             <button onClick={removeTextField}>-</button>
             <button onClick={addTextField}>+</button>
+            <button onClick={() => setPairs([])}><FaTrash/></button>
         </div>
     );
 }

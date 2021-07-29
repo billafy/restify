@@ -47,7 +47,10 @@
             background: white;
             color: #1560BD;
             font-size: 1.7rem;
-            transition: 0.3s all ease
+            transition: 0.3s all ease;
+            svg {
+                font-size: 1rem;
+            }
         }
         button:hover {
             color: black;
