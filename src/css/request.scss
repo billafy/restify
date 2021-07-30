@@ -24,6 +24,7 @@
         color: #1560BD;
         padding: 0px 5px 0px 5px;
         border: 1px solid #1560BD;
+        font-size: 1rem;
     }
     .textfields {
         p {
@@ -51,9 +52,9 @@
             svg {
                 font-size: 1rem;
             }
-        }
-        button:hover {
-            color: black;
+            &:hover {
+                color: black;
+            }
         }
     }
     .send {
@@ -64,9 +65,9 @@
         font-size: 1.3rem;
         margin: 15px auto 15px auto;
         transition: 0.3s all ease;
-    }
-    .send:hover {
-        transform: scale(1.03);
+        &:hover {
+            transform: scale(1.03);
+        }
     }
 }
 @media (min-width: 0px) and (max-width: 868px) {

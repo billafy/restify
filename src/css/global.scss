@@ -1,6 +1,7 @@
 * {
-    font-family: 'Segoe UI';
+    font-family: Play, Abel, 'Segoe UI';
     box-sizing: border-box;
+    font-size: 17px;
 }
 body {
     margin: 0;
@@ -24,4 +25,5 @@ ul {
     justify-content: space-around;
     align-items: center;
     grid-row-gap: 30px;
+    margin-bottom: 30px;
 }
