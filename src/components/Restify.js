@@ -19,7 +19,7 @@ const Restify = () => {
     const [url, setUrl] = useState('');
     const [rawHeaders, setRawHeaders] = useState([['', '']]);
     const [rawBody, setRawBody] = useState([['', '']]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const objectify = (arr) => {
         let obj = {};
